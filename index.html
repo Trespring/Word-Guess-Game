@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Word Guess</title>
+    <link rel="stylesheet" type="text/css" href="#">
+    <link rel="stylesheet" type="text/css" href="#">
+    <!-- <script src="game.js"></script> -->
+</head>
+
+
+<script type="text/javascript">
+
+var randomWordArr = ["CAULDRON", "SLEUTH", "OBSTINACY", "TOWER", "SCURRY", "ROMP", "MURDER"];
+
+var randomWord = randomWordArr[Math.floor(Math.random() * randomWordArr.length)];
+
+var s;
+var count = 0;
+var answerArray = [];
+
+function startUp()
+{
+    for (var i = 0; i < randomWord.length; i++)
+    {
+        answerArray[i] = "_";
+    }
+    s = answerArray.join(" ");
+    document.getElementById("answer").innerHTML = s;
+}
+
+function Letter()
+{
+    var letter = document.getElementById("letter").value;
+    
+    if (letter.length > 0)
+    {
+        for (var i = 0; i < randomWord.length; i++)
+       {
+           if (randomWord[i] === letter)
+           {
+               answerArray[i] = letter;
+           }
+       } 
+       count++;
+       document.getElementById("counter").innerHTML="Number of Guesses: " + count;
+       document.getElementById("answer").innerHTML = answerArray.join(" ");
+    }
+    if(count > 5)
+    {
+        document.getElementById("stat").innerHTML = "Come on - you should have guessed";
+    }
+}
+
+</script>
+
+<body onload="startUp()">
+    <h1>Guess a letter</h1>
+    <input id="letter" type="text">
+    <input type = "button" value = "letter" onClick = "Letter()"/>
+    <p id = "answer"></p>
+    <p id = "counter"></p>
+    <p id = "stat"></p>
+</body>
+<footer>
+    <p class="copyright">Copyright &copy;</p>
+</footer>
+                
+        
+                
+</body>
+</html>
